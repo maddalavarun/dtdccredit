@@ -57,7 +57,28 @@ app.include_router(dashboard.router)
 app.include_router(reports.router)
 
 
+import os
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+# Serve the static files from the build directory
+static_dir = os.path.join(os.path.dirname(__file__), "..", "static")
+if os.path.isdir(static_dir):
+    app.mount("/assets", StaticFiles(directory=os.path.join(static_dir, "assets")), name="assets")
+
+    # Catch-all route to serve the React app
+    @app.get("/{full_path:path}")
+    async def serve_spa(full_path: str):
+        # Ignore API routes gracefully
+        if full_path.startswith("api/"):
+            return {"detail": "Not Found"}
+        
+        index_file = os.path.join(static_dir, "index.html")
+        if os.path.exists(index_file):
+            return FileResponse(index_file)
+        return {"detail": "Frontend not found"}
 
