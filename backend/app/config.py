@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     JWT_SECRET: str = secrets.token_urlsafe(64)
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 480  # 8 hours
-    CORS_ORIGINS: str = "http://localhost:5173"  # Comma-separated origins
+    CORS_ORIGINS: str = "*"  # Comma-separated origins, or * for all
     MAX_UPLOAD_MB: int = 5
 
     class Config:

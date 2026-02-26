@@ -1,0 +1,1915 @@
+﻿[
+  {
+    "insertId": "svlunld4uj0",
+    "logName": "projects/poised-resource-481811-g4/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/poised-resource-481811-g4/services/dtdccredit",
+      "response": {
+        "@type": "type.googleapis.com/google.cloud.run.v1.Service",
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Service",
+        "metadata": {
+          "annotations": {
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/client-version": "558.0.0",
+            "run.googleapis.com/ingress": "all",
+            "run.googleapis.com/ingress-status": "all",
+            "run.googleapis.com/invoker-iam-disabled": "true",
+            "run.googleapis.com/maxScale": "3",
+            "run.googleapis.com/operation-id": "a37addd3-0082-4bda-9796-6fedf13d184b",
+            "run.googleapis.com/urls": "[\"https://dtdccredit-1088842847442.europe-west1.run.app\",\"https://dtdccredit-qlcd54fryq-ew.a.run.app\"]",
+            "serving.knative.dev/creator": "maddalavarun27@gmail.com",
+            "serving.knative.dev/lastModifier": "1088842847442-compute@developer.gserviceaccount.com"
+          },
+          "creationTimestamp": "2026-02-26T11:28:16.954245Z",
+          "generation": 10,
+          "labels": {
+            "cloud.googleapis.com/location": "europe-west1",
+            "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+            "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+            "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+            "gcb-trigger-region": "global",
+            "managed-by": "gcp-cloud-build-deploy-cloud-run"
+          },
+          "name": "dtdccredit",
+          "namespace": "1088842847442",
+          "resourceVersion": "AAZLuRmLjFw",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/1088842847442/services/dtdccredit",
+          "uid": "ce706426-fc6d-41aa-9437-bb364ba7a4de"
+        },
+        "spec": {
+          "template": {
+            "metadata": {
+              "annotations": {
+                "autoscaling.knative.dev/maxScale": "3",
+                "run.googleapis.com/client-name": "gcloud",
+                "run.googleapis.com/client-version": "558.0.0",
+                "run.googleapis.com/startup-cpu-boost": "true"
+              },
+              "labels": {
+                "client.knative.dev/nonce": "xxfwwwiqbz",
+                "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+                "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+                "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+                "gcb-trigger-region": "global",
+                "managed-by": "gcp-cloud-build-deploy-cloud-run",
+                "run.googleapis.com/startupProbeType": "Default"
+              }
+            },
+            "spec": {
+              "containerConcurrency": 80,
+              "containers": [
+                {
+                  "image": "europe-west1-docker.pkg.dev/poised-resource-481811-g4/cloud-run-source-deploy/dtdccredit/dtdccredit:ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+                  "name": "placeholder-1",
+                  "ports": [
+                    {
+                      "containerPort": 8080,
+                      "name": "http1"
+                    }
+                  ],
+                  "resources": {
+                    "limits": {
+                      "cpu": "1000m",
+                      "memory": "512Mi"
+                    }
+                  },
+                  "startupProbe": {
+                    "failureThreshold": 1,
+                    "periodSeconds": 240,
+                    "tcpSocket": {
+                      "port": 8080
+                    },
+                    "timeoutSeconds": 240
+                  }
+                }
+              ],
+              "serviceAccountName": "1088842847442-compute@developer.gserviceaccount.com",
+              "timeoutSeconds": 300
+            }
+          },
+          "traffic": [
+            {
+              "latestRevision": true,
+              "percent": 100
+            }
+          ]
+        },
+        "status": {
+          "address": {
+            "url": "https://dtdccredit-qlcd54fryq-ew.a.run.app"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-02-26T12:17:09.872732Z",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-02-26T12:17:08.626712Z",
+              "status": "True",
+              "type": "ConfigurationsReady"
+            },
+            {
+              "lastTransitionTime": "2026-02-26T12:17:09.837929Z",
+              "status": "True",
+              "type": "RoutesReady"
+            }
+          ],
+          "latestCreatedRevisionName": "dtdccredit-00009-kgm",
+          "latestReadyRevisionName": "dtdccredit-00009-kgm",
+          "observedGeneration": 10,
+          "traffic": [
+            {
+              "latestRevision": true,
+              "percent": 100,
+              "revisionName": "dtdccredit-00009-kgm"
+            }
+          ],
+          "url": "https://dtdccredit-qlcd54fryq-ew.a.run.app"
+        }
+      },
+      "serviceName": "run.googleapis.com",
+      "status": {
+        "message": "Ready condition status changed to True for Service dtdccredit."
+      }
+    },
+    "receiveTimestamp": "2026-02-26T12:17:10.508192218Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "INFO",
+    "timestamp": "2026-02-26T12:17:09.889554Z"
+  },
+  {
+    "insertId": "s0yyyfd7hqu",
+    "logName": "projects/poised-resource-481811-g4/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/poised-resource-481811-g4/revisions/dtdccredit-00009-kgm",
+      "response": {
+        "@type": "type.googleapis.com/google.cloud.run.v1.Revision",
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Revision",
+        "metadata": {
+          "annotations": {
+            "autoscaling.knative.dev/maxScale": "3",
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/client-version": "558.0.0",
+            "run.googleapis.com/operation-id": "a37addd3-0082-4bda-9796-6fedf13d184b",
+            "run.googleapis.com/startup-cpu-boost": "true",
+            "serving.knative.dev/creator": "1088842847442-compute@developer.gserviceaccount.com"
+          },
+          "creationTimestamp": "2026-02-26T12:16:51.870567Z",
+          "generation": 1,
+          "labels": {
+            "client.knative.dev/nonce": "xxfwwwiqbz",
+            "cloud.googleapis.com/location": "europe-west1",
+            "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+            "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+            "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+            "gcb-trigger-region": "global",
+            "managed-by": "gcp-cloud-build-deploy-cloud-run",
+            "run.googleapis.com/startupProbeType": "Default",
+            "serving.knative.dev/configuration": "dtdccredit",
+            "serving.knative.dev/configurationGeneration": "9",
+            "serving.knative.dev/route": "dtdccredit",
+            "serving.knative.dev/service": "dtdccredit",
+            "serving.knative.dev/serviceUid": "ce706426-fc6d-41aa-9437-bb364ba7a4de"
+          },
+          "name": "dtdccredit-00009-kgm",
+          "namespace": "1088842847442",
+          "ownerReferences": [
+            {
+              "apiVersion": "serving.knative.dev/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "Configuration",
+              "name": "dtdccredit",
+              "uid": "65c90df1-957c-4e41-a1d8-fa40353aff36"
+            }
+          ],
+          "resourceVersion": "AAZLuRl38fY",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/1088842847442/revisions/dtdccredit-00009-kgm",
+          "uid": "f1cdead4-8777-4fd2-9649-c44de293da87"
+        },
+        "spec": {
+          "containerConcurrency": 80,
+          "containers": [
+            {
+              "image": "europe-west1-docker.pkg.dev/poised-resource-481811-g4/cloud-run-source-deploy/dtdccredit/dtdccredit@sha256:4c824b39fed82439ccb4da5ad4ac808851f915e110545761437d45965d62540a",
+              "name": "placeholder-1",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "name": "http1"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "1000m",
+                  "memory": "512Mi"
+                }
+              },
+              "startupProbe": {
+                "failureThreshold": 1,
+                "periodSeconds": 240,
+                "tcpSocket": {
+                  "port": 8080
+                },
+                "timeoutSeconds": 240
+              }
+            }
+          ],
+          "serviceAccountName": "1088842847442-compute@developer.gserviceaccount.com",
+          "timeoutSeconds": 300
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-02-26T12:17:08.588022Z",
+              "message": "Deploying revision succeeded in 16.71s.",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-02-26T12:17:08.529942Z",
+              "message": "Containers became healthy in 8.4s.",
+              "status": "True",
+              "type": "ContainerHealthy"
+            },
+            {
+              "lastTransitionTime": "2026-02-26T12:16:58.555149Z",
+              "message": "Container image import completed in 6.1s.",
+              "status": "True",
+              "type": "ContainerReady"
+            },
+            {
+              "lastTransitionTime": "2026-02-26T12:16:59.885890Z",
+              "message": "Provisioning imported containers completed in 1.33s. Checking container health. This will wait for up to 4m for the configured startup probe, including an initial delay of 0s.",
+              "status": "True",
+              "type": "ResourcesAvailable"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "imageDigest": "europe-west1-docker.pkg.dev/poised-resource-481811-g4/cloud-run-source-deploy/dtdccredit/dtdccredit@sha256:4c824b39fed82439ccb4da5ad4ac808851f915e110545761437d45965d62540a",
+              "name": "placeholder-1"
+            }
+          ],
+          "imageDigest": "europe-west1-docker.pkg.dev/poised-resource-481811-g4/cloud-run-source-deploy/dtdccredit/dtdccredit@sha256:4c824b39fed82439ccb4da5ad4ac808851f915e110545761437d45965d62540a",
+          "logUrl": "https://console.cloud.google.com/logs/viewer?project=poised-resource-481811-g4&resource=cloud_run_revision/service_name/dtdccredit/revision_name/dtdccredit-00009-kgm&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22dtdccredit%22%0Aresource.labels.revision_name%3D%22dtdccredit-00009-kgm%22",
+          "observedGeneration": 1
+        }
+      },
+      "serviceName": "run.googleapis.com",
+      "status": {
+        "message": "Ready condition status changed to True for Revision dtdccredit-00009-kgm with message: Deploying revision succeeded in 16.71s."
+      }
+    },
+    "receiveTimestamp": "2026-02-26T12:17:08.640140399Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "INFO",
+    "timestamp": "2026-02-26T12:17:08.598123Z"
+  },
+  {
+    "insertId": "69a039c40007f6744647e0dd",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+    "receiveTimestamp": "2026-02-26T12:17:08.643167600Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "INFO",
+    "textPayload": "Default STARTUP TCP probe succeeded after 1 attempt for container \"placeholder-1\" on port 8080.",
+    "timestamp": "2026-02-26T12:17:08.521844Z"
+  },
+  {
+    "insertId": "69a039c40007f4e815f63e2b",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:08.862380900Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)",
+    "timestamp": "2026-02-26T12:17:08.521448Z"
+  },
+  {
+    "insertId": "69a039c40007eca0081c3a72",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:08.524347010Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "INFO:     Application startup complete.",
+    "timestamp": "2026-02-26T12:17:08.519328Z"
+  },
+  {
+    "insertId": "69a039c40007eacab7f48b35",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:08.524347010Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "(Background on this error at: https://sqlalche.me/e/20/e3q8)",
+    "timestamp": "2026-02-26T12:17:08.518858Z"
+  },
+  {
+    "insertId": "69a039c40007eac732ac1312",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:08.524347010Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:17:08.518855Z"
+  },
+  {
+    "insertId": "69a039c40007eac4458b2de7",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:08.524347010Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "- host: 'aws-0-ap-south-1.pooler.supabase.com', port: 6543, hostaddr: '3.111.105.85': connection failed: connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:17:08.518852Z"
+  },
+  {
+    "insertId": "69a039c40007eac13abed6b1",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:08.524347010Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "connection to server at \"3.108.251.216\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:17:08.518849Z"
+  },
+  {
+    "insertId": "69a039c40007eabea3136d54",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:08.524347010Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "- host: 'aws-0-ap-south-1.pooler.supabase.com', port: 6543, hostaddr: '3.108.251.216': connection failed: connection to server at \"3.108.251.216\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:17:08.518846Z"
+  },
+  {
+    "insertId": "69a039c40007eaba9a061281",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:08.524347010Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "Multiple connection attempts failed. All failures were:",
+    "timestamp": "2026-02-26T12:17:08.518842Z"
+  },
+  {
+    "insertId": "69a039c40007eab7ecc6dcef",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:08.524347010Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:17:08.518839Z"
+  },
+  {
+    "insertId": "69a039c40007eaa97ede94ea",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:08.524347010Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "Failed to connect to database or create tables on startup: (psycopg.OperationalError) connection failed: connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:17:08.518825Z"
+  },
+  {
+    "insertId": "69a039c10007fc4bf488f849",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:05.859898557Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "INFO:     Waiting for application startup.",
+    "timestamp": "2026-02-26T12:17:05.523339Z"
+  },
+  {
+    "insertId": "69a039c10007fb8853fb6b30",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:17:05.528060429Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "INFO:     Started server process [2]",
+    "timestamp": "2026-02-26T12:17:05.523144Z"
+  },
+  {
+    "insertId": "69a039bb000ef3f7049ffd44",
+    "labels": {
+      "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+      "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c487d2f981ac2b0dcb78a25fa4840388e026a020a7dbe64de483a754584a4808f8cf4925f3a524e34cefcf84c8d4dddcc07463ec711999713a0b52041b74d17f21dd73b995574d506c04",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run",
+      "scaling_reason": "DEPLOYMENT_ROLLOUT"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+    "receiveTimestamp": "2026-02-26T12:16:59.982033742Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00009-kgm",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "INFO",
+    "textPayload": "Starting new instance. Reason: DEPLOYMENT_ROLLOUT - Instance started due to traffic shifting between revisions due to deployment, traffic split adjustment, or deployment health check.",
+    "timestamp": "2026-02-26T12:16:59.979959Z"
+  },
+  {
+    "insertId": "qxooyud44ta",
+    "logName": "projects/poised-resource-481811-g4/logs/cloudaudit.googleapis.com%2Factivity",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "oauthInfo": {
+          "oauthClientId": "102782036879594010961"
+        },
+        "principalEmail": "1088842847442-compute@developer.gserviceaccount.com",
+        "principalSubject": "serviceAccount:1088842847442-compute@developer.gserviceaccount.com"
+      },
+      "authorizationInfo": [
+        {
+          "granted": true,
+          "permission": "run.services.update",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "namespaces/poised-resource-481811-g4/services/dtdccredit",
+          "resourceAttributes": {}
+        },
+        {
+          "granted": true,
+          "permission": "run.services.update",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "namespaces/poised-resource-481811-g4/services/dtdccredit",
+          "resourceAttributes": {
+            "name": "namespaces/poised-resource-481811-g4/services/dtdccredit",
+            "service": "run.googleapis.com/",
+            "type": "run.googleapis.com/Service"
+          }
+        }
+      ],
+      "methodName": "google.cloud.run.v1.Services.ReplaceService",
+      "request": {
+        "@type": "type.googleapis.com/google.cloud.run.v1.ReplaceServiceRequest",
+        "name": "namespaces/poised-resource-481811-g4/services/dtdccredit",
+        "service": {
+          "apiVersion": "serving.knative.dev/v1",
+          "kind": "Service",
+          "metadata": {
+            "annotations": {
+              "run.googleapis.com/client-name": "gcloud",
+              "run.googleapis.com/client-version": "558.0.0",
+              "run.googleapis.com/ingress": "all",
+              "run.googleapis.com/ingress-status": "all",
+              "run.googleapis.com/invoker-iam-disabled": "true",
+              "run.googleapis.com/maxScale": "3",
+              "run.googleapis.com/operation-id": "3d80a61a-9c37-4045-885b-6912da7bb940",
+              "run.googleapis.com/urls": "[\"https://dtdccredit-1088842847442.europe-west1.run.app\",\"https://dtdccredit-qlcd54fryq-ew.a.run.app\"]",
+              "serving.knative.dev/creator": "maddalavarun27@gmail.com",
+              "serving.knative.dev/lastModifier": "maddalavarun27@gmail.com"
+            },
+            "creationTimestamp": "2026-02-26T11:28:16.954245Z",
+            "generation": 9,
+            "labels": {
+              "cloud.googleapis.com/location": "europe-west1",
+              "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+              "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+              "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+              "gcb-trigger-region": "global",
+              "managed-by": "gcp-cloud-build-deploy-cloud-run"
+            },
+            "name": "dtdccredit",
+            "namespace": "1088842847442",
+            "resourceVersion": "AAZLuRXK9VA",
+            "selfLink": "/apis/serving.knative.dev/v1/namespaces/1088842847442/services/dtdccredit",
+            "uid": "ce706426-fc6d-41aa-9437-bb364ba7a4de"
+          },
+          "spec": {
+            "template": {
+              "metadata": {
+                "annotations": {
+                  "autoscaling.knative.dev/maxScale": "3",
+                  "run.googleapis.com/client-name": "gcloud",
+                  "run.googleapis.com/client-version": "558.0.0",
+                  "run.googleapis.com/startup-cpu-boost": "true"
+                },
+                "labels": {
+                  "client.knative.dev/nonce": "xxfwwwiqbz",
+                  "cloud.googleapis.com/location": "europe-west1",
+                  "commit-sha": "ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+                  "gcb-build-id": "ad9398cb-f266-4095-b654-f6ac19ec1d5e",
+                  "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+                  "gcb-trigger-region": "global",
+                  "managed-by": "gcp-cloud-build-deploy-cloud-run"
+                }
+              },
+              "spec": {
+                "containerConcurrency": 80,
+                "containers": [
+                  {
+                    "image": "europe-west1-docker.pkg.dev/poised-resource-481811-g4/cloud-run-source-deploy/dtdccredit/dtdccredit:ce60df27732a84d9588ec5bb9b376d9d96e0c137",
+                    "name": "placeholder-1",
+                    "resources": {
+                      "limits": {
+                        "cpu": "1000m",
+                        "memory": "512Mi"
+                      }
+                    }
+                  }
+                ],
+                "serviceAccountName": "1088842847442-compute@developer.gserviceaccount.com",
+                "timeoutSeconds": 300
+              }
+            },
+            "traffic": [
+              {
+                "latestRevision": true,
+                "percent": 100
+              }
+            ]
+          },
+          "status": {
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-02-26T12:16:06.787689Z",
+                "reason": "HealthCheckContainerError",
+                "status": "False",
+                "type": "Ready"
+              },
+              {
+                "lastTransitionTime": "2026-02-26T12:16:06.511087Z",
+                "reason": "HealthCheckContainerError",
+                "status": "False",
+                "type": "ConfigurationsReady"
+              },
+              {
+                "lastTransitionTime": "2026-02-26T12:16:06.787689Z",
+                "reason": "HealthCheckContainerError",
+                "status": "False",
+                "type": "RoutesReady"
+              }
+            ],
+            "latestCreatedRevisionName": "dtdccredit-00008-8lh",
+            "latestReadyRevisionName": "dtdccredit-00006-svw",
+            "observedGeneration": 9,
+            "traffic": [
+              {
+                "latestRevision": true,
+                "percent": 100,
+                "revisionName": "dtdccredit-00006-svw"
+              }
+            ],
+            "url": "https://dtdccredit-qlcd54fryq-ew.a.run.app"
+          }
+        }
+      },
+      "requestMetadata": {
+        "callerIp": "34.86.208.160",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/558.0.0 command/gcloud.run.services.update invocation-id/ea291a9f31a14d46a7ee2b590549f6ff environment/GCE environment-version/None client-os/LINUX client-os-ver/5.10.0 client-pltf-arch/x86_64 interactive/False from-script/False python/3.13.10 term/  (Linux 5.10.0-32-cloud-amd64),gzip(gfe)",
+        "destinationAttributes": {},
+        "requestAttributes": {
+          "auth": {},
+          "time": "2026-02-26T12:16:51.825241Z"
+        }
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "europe-west1"
+        ]
+      },
+      "resourceName": "namespaces/poised-resource-481811-g4/services/dtdccredit",
+      "serviceName": "run.googleapis.com"
+    },
+    "receiveTimestamp": "2026-02-26T12:16:51.949986543Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "NOTICE",
+    "timestamp": "2026-02-26T12:16:51.381920Z"
+  },
+  {
+    "insertId": "wh8w1fdglsq",
+    "logName": "projects/poised-resource-481811-g4/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/poised-resource-481811-g4/services/dtdccredit",
+      "response": {
+        "@type": "type.googleapis.com/google.cloud.run.v1.Service",
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Service",
+        "metadata": {
+          "annotations": {
+            "run.googleapis.com/client-name": "cloud-console",
+            "run.googleapis.com/ingress": "all",
+            "run.googleapis.com/ingress-status": "all",
+            "run.googleapis.com/invoker-iam-disabled": "true",
+            "run.googleapis.com/maxScale": "3",
+            "run.googleapis.com/operation-id": "3d80a61a-9c37-4045-885b-6912da7bb940",
+            "run.googleapis.com/urls": "[\"https://dtdccredit-1088842847442.europe-west1.run.app\",\"https://dtdccredit-qlcd54fryq-ew.a.run.app\"]",
+            "serving.knative.dev/creator": "maddalavarun27@gmail.com",
+            "serving.knative.dev/lastModifier": "maddalavarun27@gmail.com"
+          },
+          "creationTimestamp": "2026-02-26T11:28:16.954245Z",
+          "generation": 9,
+          "labels": {
+            "cloud.googleapis.com/location": "europe-west1",
+            "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+            "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+            "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+            "gcb-trigger-region": "global",
+            "managed-by": "gcp-cloud-build-deploy-cloud-run"
+          },
+          "name": "dtdccredit",
+          "namespace": "1088842847442",
+          "resourceVersion": "AAZLuRXFPQk",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/1088842847442/services/dtdccredit",
+          "uid": "ce706426-fc6d-41aa-9437-bb364ba7a4de"
+        },
+        "spec": {
+          "template": {
+            "metadata": {
+              "annotations": {
+                "autoscaling.knative.dev/maxScale": "3",
+                "run.googleapis.com/client-name": "cloud-console",
+                "run.googleapis.com/startup-cpu-boost": "true"
+              },
+              "labels": {
+                "client.knative.dev/nonce": "92865d7a-60b2-40c7-a81b-8ce3b6f7c588",
+                "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+                "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+                "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+                "gcb-trigger-region": "global",
+                "managed-by": "gcp-cloud-build-deploy-cloud-run",
+                "run.googleapis.com/startupProbeType": "Default"
+              }
+            },
+            "spec": {
+              "containerConcurrency": 80,
+              "containers": [
+                {
+                  "image": "europe-west1-docker.pkg.dev/poised-resource-481811-g4/cloud-run-source-deploy/dtdccredit/dtdccredit:cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+                  "name": "placeholder-1",
+                  "ports": [
+                    {
+                      "containerPort": 8080,
+                      "name": "http1"
+                    }
+                  ],
+                  "resources": {
+                    "limits": {
+                      "cpu": "1000m",
+                      "memory": "512Mi"
+                    }
+                  },
+                  "startupProbe": {
+                    "failureThreshold": 1,
+                    "periodSeconds": 240,
+                    "tcpSocket": {
+                      "port": 8080
+                    },
+                    "timeoutSeconds": 240
+                  }
+                }
+              ],
+              "serviceAccountName": "1088842847442-compute@developer.gserviceaccount.com",
+              "timeoutSeconds": 300
+            }
+          },
+          "traffic": [
+            {
+              "latestRevision": true,
+              "percent": 100
+            }
+          ]
+        },
+        "status": {
+          "address": {
+            "url": "https://dtdccredit-qlcd54fryq-ew.a.run.app"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-02-26T12:16:06.511087Z",
+              "message": "The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable within the allocated timeout. This can happen when the container port is misconfigured or if the timeout is too short. The health check timeout can be extended. Logs for this revision might contain more information.\n\nLogs URL: https://console.cloud.google.com/logs/viewer?project=poised-resource-481811-g4&resource=cloud_run_revision/service_name/dtdccredit/revision_name/dtdccredit-00008-8lh&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22dtdccredit%22%0Aresource.labels.revision_name%3D%22dtdccredit-00008-8lh%22 \nFor more troubleshooting guidance, see https://cloud.google.com/run/docs/troubleshooting#container-failed-to-start",
+              "reason": "HealthCheckContainerError",
+              "status": "False",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-02-26T12:16:06.511087Z",
+              "message": "The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable within the allocated timeout. This can happen when the container port is misconfigured or if the timeout is too short. The health check timeout can be extended. Logs for this revision might contain more information.\n\nLogs URL: https://console.cloud.google.com/logs/viewer?project=poised-resource-481811-g4&resource=cloud_run_revision/service_name/dtdccredit/revision_name/dtdccredit-00008-8lh&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22dtdccredit%22%0Aresource.labels.revision_name%3D%22dtdccredit-00008-8lh%22 \nFor more troubleshooting guidance, see https://cloud.google.com/run/docs/troubleshooting#container-failed-to-start",
+              "reason": "HealthCheckContainerError",
+              "status": "False",
+              "type": "ConfigurationsReady"
+            },
+            {
+              "lastTransitionTime": "2026-02-26T12:15:52.855972Z",
+              "message": "Provisioning revision instances to receive traffic.",
+              "status": "Unknown",
+              "type": "RoutesReady"
+            }
+          ],
+          "latestCreatedRevisionName": "dtdccredit-00008-8lh",
+          "latestReadyRevisionName": "dtdccredit-00006-svw",
+          "observedGeneration": 9,
+          "traffic": [
+            {
+              "latestRevision": true,
+              "percent": 100,
+              "revisionName": "dtdccredit-00006-svw"
+            }
+          ],
+          "url": "https://dtdccredit-qlcd54fryq-ew.a.run.app"
+        }
+      },
+      "serviceName": "run.googleapis.com",
+      "status": {
+        "code": 9,
+        "message": "Ready condition status changed to False for Service dtdccredit with message: The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable within the allocated timeout. This can happen when the container port is misconfigured or if the timeout is too short. The health check timeout can be extended. Logs for this revision might contain more information.\n\nLogs URL: https://console.cloud.google.com/logs/viewer?project=poised-resource-481811-g4&resource=cloud_run_revision/service_name/dtdccredit/revision_name/dtdccredit-00008-8lh&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22dtdccredit%22%0Aresource.labels.revision_name%3D%22dtdccredit-00008-8lh%22 \nFor more troubleshooting guidance, see https://cloud.google.com/run/docs/troubleshooting#container-failed-to-start"
+      }
+    },
+    "receiveTimestamp": "2026-02-26T12:16:07.032307569Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-02-26T12:16:06.553555Z"
+  },
+  {
+    "insertId": "-i9n8ype1ichu",
+    "logName": "projects/poised-resource-481811-g4/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/poised-resource-481811-g4/revisions/dtdccredit-00008-8lh",
+      "response": {
+        "@type": "type.googleapis.com/google.cloud.run.v1.Revision",
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Revision",
+        "metadata": {
+          "annotations": {
+            "autoscaling.knative.dev/maxScale": "3",
+            "run.googleapis.com/client-name": "cloud-console",
+            "run.googleapis.com/operation-id": "3d80a61a-9c37-4045-885b-6912da7bb940",
+            "run.googleapis.com/startup-cpu-boost": "true",
+            "serving.knative.dev/creator": "maddalavarun27@gmail.com"
+          },
+          "creationTimestamp": "2026-02-26T12:15:52.210120Z",
+          "generation": 1,
+          "labels": {
+            "client.knative.dev/nonce": "92865d7a-60b2-40c7-a81b-8ce3b6f7c588",
+            "cloud.googleapis.com/location": "europe-west1",
+            "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+            "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+            "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+            "gcb-trigger-region": "global",
+            "managed-by": "gcp-cloud-build-deploy-cloud-run",
+            "run.googleapis.com/startupProbeType": "Default",
+            "serving.knative.dev/configuration": "dtdccredit",
+            "serving.knative.dev/configurationGeneration": "8",
+            "serving.knative.dev/route": "dtdccredit",
+            "serving.knative.dev/service": "dtdccredit",
+            "serving.knative.dev/serviceUid": "ce706426-fc6d-41aa-9437-bb364ba7a4de"
+          },
+          "name": "dtdccredit-00008-8lh",
+          "namespace": "1088842847442",
+          "ownerReferences": [
+            {
+              "apiVersion": "serving.knative.dev/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "Configuration",
+              "name": "dtdccredit",
+              "uid": "65c90df1-957c-4e41-a1d8-fa40353aff36"
+            }
+          ],
+          "resourceVersion": "AAZLuRXEDk4",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/1088842847442/revisions/dtdccredit-00008-8lh",
+          "uid": "1bd608b6-b524-4bae-b9f7-8740b9165ae8"
+        },
+        "spec": {
+          "containerConcurrency": 80,
+          "containers": [
+            {
+              "image": "europe-west1-docker.pkg.dev/poised-resource-481811-g4/cloud-run-source-deploy/dtdccredit/dtdccredit@sha256:e9b9ed0dee5fb99b36df22ed044cbedcef74c21d40a76a6251a637d09503501d",
+              "name": "placeholder-1",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "name": "http1"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "1000m",
+                  "memory": "512Mi"
+                }
+              },
+              "startupProbe": {
+                "failureThreshold": 1,
+                "periodSeconds": 240,
+                "tcpSocket": {
+                  "port": 8080
+                },
+                "timeoutSeconds": 240
+              }
+            }
+          ],
+          "serviceAccountName": "1088842847442-compute@developer.gserviceaccount.com",
+          "timeoutSeconds": 300
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-02-26T12:16:06.467150Z",
+              "message": "The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable within the allocated timeout. This can happen when the container port is misconfigured or if the timeout is too short. The health check timeout can be extended. Logs for this revision might contain more information.\n\nLogs URL: https://console.cloud.google.com/logs/viewer?project=poised-resource-481811-g4&resource=cloud_run_revision/service_name/dtdccredit/revision_name/dtdccredit-00008-8lh&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22dtdccredit%22%0Aresource.labels.revision_name%3D%22dtdccredit-00008-8lh%22 \nFor more troubleshooting guidance, see https://cloud.google.com/run/docs/troubleshooting#container-failed-to-start",
+              "reason": "HealthCheckContainerError",
+              "status": "False",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-02-26T12:16:06.467150Z",
+              "message": "The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable within the allocated timeout. This can happen when the container port is misconfigured or if the timeout is too short. The health check timeout can be extended. Logs for this revision might contain more information.\n\nLogs URL: https://console.cloud.google.com/logs/viewer?project=poised-resource-481811-g4&resource=cloud_run_revision/service_name/dtdccredit/revision_name/dtdccredit-00008-8lh&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22dtdccredit%22%0Aresource.labels.revision_name%3D%22dtdccredit-00008-8lh%22 \nFor more troubleshooting guidance, see https://cloud.google.com/run/docs/troubleshooting#container-failed-to-start",
+              "reason": "HealthCheckContainerError",
+              "status": "False",
+              "type": "ContainerHealthy"
+            },
+            {
+              "lastTransitionTime": "2026-02-26T12:15:52.764221Z",
+              "message": "Container image import completed.",
+              "status": "True",
+              "type": "ContainerReady"
+            },
+            {
+              "lastTransitionTime": "2026-02-26T12:15:55.058999Z",
+              "message": "Provisioning imported containers completed in 2.29s. Checking container health. This will wait for up to 4m for the configured startup probe, including an initial delay of 0s.",
+              "status": "True",
+              "type": "ResourcesAvailable"
+            },
+            {
+              "lastTransitionTime": "2026-02-26T12:15:55.058999Z",
+              "message": "System will retry after 00:00 from lastTransitionTime for attempt 0.",
+              "reason": "ImmediateRetry",
+              "severity": "Info",
+              "status": "True",
+              "type": "Retry"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "imageDigest": "europe-west1-docker.pkg.dev/poised-resource-481811-g4/cloud-run-source-deploy/dtdccredit/dtdccredit@sha256:e9b9ed0dee5fb99b36df22ed044cbedcef74c21d40a76a6251a637d09503501d",
+              "name": "placeholder-1"
+            }
+          ],
+          "imageDigest": "europe-west1-docker.pkg.dev/poised-resource-481811-g4/cloud-run-source-deploy/dtdccredit/dtdccredit@sha256:e9b9ed0dee5fb99b36df22ed044cbedcef74c21d40a76a6251a637d09503501d",
+          "logUrl": "https://console.cloud.google.com/logs/viewer?project=poised-resource-481811-g4&resource=cloud_run_revision/service_name/dtdccredit/revision_name/dtdccredit-00008-8lh&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22dtdccredit%22%0Aresource.labels.revision_name%3D%22dtdccredit-00008-8lh%22",
+          "observedGeneration": 1
+        }
+      },
+      "serviceName": "run.googleapis.com",
+      "status": {
+        "code": 9,
+        "message": "Ready condition status changed to False for Revision dtdccredit-00008-8lh with message: The user-provided container failed to start and listen on the port defined provided by the PORT=8080 environment variable within the allocated timeout. This can happen when the container port is misconfigured or if the timeout is too short. The health check timeout can be extended. Logs for this revision might contain more information.\n\nLogs URL: https://console.cloud.google.com/logs/viewer?project=poised-resource-481811-g4&resource=cloud_run_revision/service_name/dtdccredit/revision_name/dtdccredit-00008-8lh&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22dtdccredit%22%0Aresource.labels.revision_name%3D%22dtdccredit-00008-8lh%22 \nFor more troubleshooting guidance, see https://cloud.google.com/run/docs/troubleshooting#container-failed-to-start"
+      }
+    },
+    "receiveTimestamp": "2026-02-26T12:16:06.653219274Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-02-26T12:16:06.477097Z"
+  },
+  {
+    "insertId": "69a03986000720f672893ce0",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+    "receiveTimestamp": "2026-02-26T12:16:06.677159849Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "ERROR",
+    "textPayload": "Default STARTUP TCP probe failed 1 time consecutively for container \"placeholder-1\" on port 8080. The instance was not started.\nConnection failed with status CANCELLED.",
+    "timestamp": "2026-02-26T12:16:06.467190Z"
+  },
+  {
+    "insertId": "69a0398600052e9d311e6de7",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "container_name": "placeholder-1",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+    "receiveTimestamp": "2026-02-26T12:16:06.345405014Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "WARNING",
+    "textPayload": "Container called exit(3).",
+    "timestamp": "2026-02-26T12:16:06.339554635Z"
+  },
+  {
+    "insertId": "69a03985000781897ad2392a",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "ERROR:    Application startup failed. Exiting.",
+    "timestamp": "2026-02-26T12:16:05.491913Z"
+  },
+  {
+    "insertId": "69a03985000781845b021120",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "(Background on this error at: https://sqlalche.me/e/20/e3q8)",
+    "timestamp": "2026-02-26T12:16:05.491908Z"
+  },
+  {
+    "insertId": "69a0398500078181da28b071",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491905Z"
+  },
+  {
+    "insertId": "69a039850007817c4dc57531",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "- host: 'aws-0-ap-south-1.pooler.supabase.com', port: 6543, hostaddr: '3.111.105.85': connection failed: connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491900Z"
+  },
+  {
+    "insertId": "69a0398500078178d16d89e1",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "connection to server at \"3.108.251.216\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491896Z"
+  },
+  {
+    "insertId": "69a039850007817470888bd3",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "- host: 'aws-0-ap-south-1.pooler.supabase.com', port: 6543, hostaddr: '3.108.251.216': connection failed: connection to server at \"3.108.251.216\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491892Z"
+  },
+  {
+    "insertId": "69a0398500078170cb91b6b3",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "Multiple connection attempts failed. All failures were:",
+    "timestamp": "2026-02-26T12:16:05.491888Z"
+  },
+  {
+    "insertId": "69a039850007816d80ab6efc",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491885Z"
+  },
+  {
+    "errorGroups": [
+      {
+        "id": "CI7b6eGWirTLlgE"
+      }
+    ],
+    "insertId": "69a0398500078167d4f00726",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "ERROR",
+    "textPayload": "Traceback (most recent call last):\n  File \"/usr/local/lib/python3.11/site-packages/starlette/routing.py\", line 734, in lifespan\n    async with self.lifespan_context(app) as maybe_state:\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 210, in __aenter__\n    return await anext(self.gen)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/backend/app/main.py\", line 21, in lifespan\n    Base.metadata.create_all(bind=engine)\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/schema.py\", line 5825, in create_all\n    bind._run_ddl_visitor(\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py\", line 3232, in _run_ddl_visitor\n    with self.begin() as conn:\n  File \"/usr/local/lib/python3.11/contextlib.py\", line 137, in __enter__\n    return next(self.gen)\n           ^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py\", line 3222, in begin\n    with self.connect() as conn:\n         ^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py\", line 3258, in connect\n    return self._connection_cls(self)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py\", line 147, in __init__\n    Connection._handle_dbapi_exception_noconnection(\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py\", line 2422, in _handle_dbapi_exception_noconnection\n    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py\", line 145, in __init__\n    self._dbapi_connection = engine.raw_connection()\n                             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py\", line 3282, in raw_connection\n    return self.pool.connect()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py\", line 449, in connect\n    return _ConnectionFairy._checkout(self)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py\", line 1263, in _checkout\n    fairy = _ConnectionRecord.checkout(pool)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py\", line 712, in checkout\n    rec = pool._do_get()\n          ^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py\", line 168, in _do_get\n    with util.safe_reraise():\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py\", line 146, in __exit__\n    raise exc_value.with_traceback(exc_tb)\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py\", line 166, in _do_get\n    return self._create_connection()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py\", line 390, in _create_connection\n    return _ConnectionRecord(self)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py\", line 674, in __init__\n    self.__connect()\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py\", line 900, in __connect\n    with util.safe_reraise():\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py\", line 146, in __exit__\n    raise exc_value.with_traceback(exc_tb)\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py\", line 896, in __connect\n    self.dbapi_connection = connection = pool._invoke_creator(self)\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py\", line 643, in connect\n    return dialect.connect(*cargs, **cparams)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py\", line 616, in connect\n    return self.loaded_dbapi.connect(*cargs, **cparams)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/psycopg/connection.py\", line 130, in connect\n    raise new_ex.with_traceback(None)\nsqlalchemy.exc.OperationalError: (psycopg.OperationalError) connection failed: connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491879Z"
+  },
+  {
+    "insertId": "69a03985000781238473895e",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "The above exception was the direct cause of the following exception:",
+    "timestamp": "2026-02-26T12:16:05.491811Z"
+  },
+  {
+    "insertId": "69a039850007811a58832e44",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491802Z"
+  },
+  {
+    "insertId": "69a039850007811652cb91df",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "- host: 'aws-0-ap-south-1.pooler.supabase.com', port: 6543, hostaddr: '3.111.105.85': connection failed: connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491798Z"
+  },
+  {
+    "insertId": "69a039850007811210861861",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "connection to server at \"3.108.251.216\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491794Z"
+  },
+  {
+    "insertId": "69a039850007810e00d7ca60",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "- host: 'aws-0-ap-south-1.pooler.supabase.com', port: 6543, hostaddr: '3.108.251.216': connection failed: connection to server at \"3.108.251.216\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491790Z"
+  },
+  {
+    "insertId": "69a039850007810a766dd947",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "Multiple connection attempts failed. All failures were:",
+    "timestamp": "2026-02-26T12:16:05.491786Z"
+  },
+  {
+    "insertId": "69a039850007810660b2af13",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491782Z"
+  },
+  {
+    "insertId": "69a0398500078103884136b1",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "psycopg.OperationalError: connection failed: connection to server at \"3.111.105.85\", port 6543 failed: FATAL:  Tenant or user not found",
+    "timestamp": "2026-02-26T12:16:05.491779Z"
+  },
+  {
+    "insertId": "69a03985000780f2c8cd7e17",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    raise new_ex.with_traceback(None)",
+    "timestamp": "2026-02-26T12:16:05.491762Z"
+  },
+  {
+    "insertId": "69a03985000780eeed463a45",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  File \"/usr/local/lib/python3.11/site-packages/psycopg/connection.py\", line 130, in connect",
+    "timestamp": "2026-02-26T12:16:05.491758Z"
+  },
+  {
+    "insertId": "69a03985000780e7dc8779da",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "timestamp": "2026-02-26T12:16:05.491751Z"
+  },
+  {
+    "insertId": "69a03985000780e3afe8ab00",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    return self.loaded_dbapi.connect(*cargs, **cparams)",
+    "timestamp": "2026-02-26T12:16:05.491747Z"
+  },
+  {
+    "insertId": "69a03985000780df524bebb8",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py\", line 616, in connect",
+    "timestamp": "2026-02-26T12:16:05.491743Z"
+  },
+  {
+    "insertId": "69a03985000780dbb455b658",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "timestamp": "2026-02-26T12:16:05.491739Z"
+  },
+  {
+    "insertId": "69a03985000780d7e93bbbcc",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    return dialect.connect(*cargs, **cparams)",
+    "timestamp": "2026-02-26T12:16:05.491735Z"
+  },
+  {
+    "insertId": "69a03985000780d37b58b368",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/create.py\", line 643, in connect",
+    "timestamp": "2026-02-26T12:16:05.491731Z"
+  },
+  {
+    "insertId": "69a03985000780ccefd6ee8e",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "timestamp": "2026-02-26T12:16:05.491724Z"
+  },
+  {
+    "insertId": "69a03985000780c8c4966dbe",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    self.dbapi_connection = connection = pool._invoke_creator(self)",
+    "timestamp": "2026-02-26T12:16:05.491720Z"
+  },
+  {
+    "insertId": "69a03985000780c482440b61",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  File \"/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py\", line 896, in __connect",
+    "timestamp": "2026-02-26T12:16:05.491716Z"
+  },
+  {
+    "insertId": "69a03985000780c0bb6364f1",
+    "labels": {
+      "commit-sha": "cd7c2f1a91a3f4e79cf13aa061eced2af3bda783",
+      "gcb-build-id": "46d1a331-5cfe-4988-869c-3dd5a798a38a",
+      "gcb-trigger-id": "842fa044-4597-486a-a3cb-94b8e2f1b409",
+      "gcb-trigger-region": "global",
+      "instanceId": "00da6cd2c4b9b45201386d4c70d5b2b837903334f7ef01f7f142953a0189adcd456fc10e2e635ce88f9298fe595fca357e40caf0dc20224e5a47503aa5b1697e464155d799265c788fe9229e537f",
+      "managed-by": "gcp-cloud-build-deploy-cloud-run"
+    },
+    "logName": "projects/poised-resource-481811-g4/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2026-02-26T12:16:05.734576842Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "dtdccredit",
+        "location": "europe-west1",
+        "project_id": "poised-resource-481811-g4",
+        "revision_name": "dtdccredit-00008-8lh",
+        "service_name": "dtdccredit"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    raise exc_value.with_traceback(exc_tb)",
+    "timestamp": "2026-02-26T12:16:05.491712Z"
+  }
+]
