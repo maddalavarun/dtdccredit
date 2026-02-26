@@ -57,12 +57,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(auth_router.router)
-app.include_router(clients.router)
-app.include_router(invoices.router)
-app.include_router(payments.router)
-app.include_router(dashboard.router)
-app.include_router(reports.router)
+from fastapi import APIRouter
+
+api_router = APIRouter(prefix="/api")
+
+api_router.include_router(auth_router.router)
+api_router.include_router(clients.router)
+api_router.include_router(invoices.router)
+api_router.include_router(payments.router)
+api_router.include_router(dashboard.router)
+api_router.include_router(reports.router)
+
+app.include_router(api_router)
 
 
 import os
