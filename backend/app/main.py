@@ -15,10 +15,18 @@ from app.routers import auth_router, clients, invoices, payments, dashboard, rep
 limiter = Limiter(key_func=get_remote_address)
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Create tables
-    Base.metadata.create_all(bind=engine)
+    # Create tables gracefully
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:
+        logger.error(f"Failed to connect to database or create tables on startup: {e}")
+        
     db = SessionLocal()
     try:
         # Tables are created above
