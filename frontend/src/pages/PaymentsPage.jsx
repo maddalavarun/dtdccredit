@@ -3,11 +3,13 @@ import api from '../api/client';
 import toast, { Toaster } from 'react-hot-toast';
 import { HiPlus, HiTrash } from 'react-icons/hi';
 
+const paymentsCache = { data: null, invoices: null, clients: null };
+
 export default function PaymentsPage() {
-    const [payments, setPayments] = useState([]);
-    const [invoices, setInvoices] = useState([]);
-    const [clients, setClients] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [payments, setPayments] = useState(paymentsCache.data || []);
+    const [invoices, setInvoices] = useState(paymentsCache.invoices || []);
+    const [clients, setClients] = useState(paymentsCache.clients || []);
+    const [loading, setLoading] = useState(!paymentsCache.data);
     const [showAdd, setShowAdd] = useState(false);
     const [filterClient, setFilterClient] = useState('');
     const [form, setForm] = useState({
@@ -16,18 +18,25 @@ export default function PaymentsPage() {
     });
 
     const fetchPayments = () => {
-        setLoading(true);
+        if (!payments.length) setLoading(true);
         const params = {};
         if (filterClient) params.client_id = filterClient;
         api.get('/payments', { params })
-            .then(r => setPayments(r.data))
+            .then(r => {
+                setPayments(r.data);
+                if (!filterClient) paymentsCache.data = r.data;
+            })
             .catch(() => toast.error('Failed to load payments'))
             .finally(() => setLoading(false));
     };
 
     useEffect(() => {
-        api.get('/clients').then(r => setClients(r.data));
-        api.get('/invoices').then(r => setInvoices(r.data));
+        if (!clients.length) {
+            api.get('/clients').then(r => { setClients(r.data); paymentsCache.clients = r.data; });
+        }
+        if (!invoices.length) {
+            api.get('/invoices').then(r => { setInvoices(r.data); paymentsCache.invoices = r.data; });
+        }
         fetchPayments();
     }, []);
     useEffect(() => { fetchPayments(); }, [filterClient]);
@@ -82,12 +91,12 @@ export default function PaymentsPage() {
             </div>
 
             <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                {loading ? (
+                {loading && payments.length === 0 ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Loading...</div>
                 ) : payments.length === 0 ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>No payments recorded yet</div>
                 ) : (
-                    <div style={{ overflowX: 'auto' }}>
+                    <div style={{ overflowX: 'auto', opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s' }}>
                         <table className="data-table">
                             <thead>
                                 <tr>

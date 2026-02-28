@@ -4,19 +4,24 @@ import api from '../api/client';
 import toast, { Toaster } from 'react-hot-toast';
 import { HiPlus, HiPencil, HiTrash, HiSearch } from 'react-icons/hi';
 
+const clientsCache = { data: null, timestamp: 0 };
+
 export default function ClientsPage() {
     const navigate = useNavigate();
-    const [clients, setClients] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [clients, setClients] = useState(clientsCache.data || []);
+    const [loading, setLoading] = useState(!clientsCache.data);
     const [search, setSearch] = useState('');
     const [modal, setModal] = useState(null); // null | 'add' | 'edit'
     const [form, setForm] = useState({ company_name: '', contact_person: '', phone: '', email: '' });
     const [editId, setEditId] = useState(null);
 
     const fetchClients = () => {
-        setLoading(true);
+        if (!clients.length) setLoading(true);
         api.get('/clients', { params: search ? { search } : {} })
-            .then(r => setClients(r.data))
+            .then(r => {
+                setClients(r.data);
+                if (!search) { clientsCache.data = r.data; clientsCache.timestamp = Date.now(); }
+            })
             .catch(() => toast.error('Failed to load clients'))
             .finally(() => setLoading(false));
     };
@@ -90,12 +95,12 @@ export default function ClientsPage() {
             </div>
 
             <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                {loading ? (
+                {loading && clients.length === 0 ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Loading...</div>
                 ) : clients.length === 0 ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>No clients found</div>
                 ) : (
-                    <div style={{ overflowX: 'auto' }}>
+                    <div style={{ overflowX: 'auto', opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s' }}>
                         <table className="data-table">
                             <thead>
                                 <tr>

@@ -4,10 +4,12 @@ import toast, { Toaster } from 'react-hot-toast';
 import { HiOutlineUpload, HiOutlineTrash, HiOutlineFilter } from 'react-icons/hi';
 import { FaWhatsapp } from 'react-icons/fa';
 
+const invoicesCache = { data: null, clients: null };
+
 export default function InvoicesPage() {
-    const [invoices, setInvoices] = useState([]);
-    const [clients, setClients] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [invoices, setInvoices] = useState(invoicesCache.data || []);
+    const [clients, setClients] = useState(invoicesCache.clients || []);
+    const [loading, setLoading] = useState(!invoicesCache.data);
     const [showImport, setShowImport] = useState(false);
     const [importResult, setImportResult] = useState(null);
     const [uploading, setUploading] = useState(false);
@@ -16,17 +18,27 @@ export default function InvoicesPage() {
     const fileRef = useRef(null);
 
     const fetchInvoices = () => {
-        setLoading(true);
+        if (!invoices.length) setLoading(true);
         const params = {};
         if (filterClient) params.client_id = filterClient;
         if (filterStatus) params.status_filter = filterStatus;
         api.get('/invoices', { params })
-            .then(r => setInvoices(r.data))
+            .then(r => {
+                setInvoices(r.data);
+                if (!filterClient && !filterStatus) invoicesCache.data = r.data;
+            })
             .catch(() => toast.error('Failed to load invoices'))
             .finally(() => setLoading(false));
     };
 
-    useEffect(() => { api.get('/clients').then(r => setClients(r.data)); }, []);
+    useEffect(() => {
+        if (!clients.length) {
+            api.get('/clients').then(r => {
+                setClients(r.data);
+                invoicesCache.clients = r.data;
+            });
+        }
+    }, []);
     useEffect(() => { fetchInvoices(); }, [filterClient, filterStatus]);
 
     const handleImport = async (e) => {
@@ -113,12 +125,12 @@ export default function InvoicesPage() {
             </div>
 
             <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                {loading ? (
+                {loading && invoices.length === 0 ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Loading...</div>
                 ) : invoices.length === 0 ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>No invoices found. Import an Excel/CSV file to get started.</div>
                 ) : (
-                    <div style={{ overflowX: 'auto' }}>
+                    <div style={{ overflowX: 'auto', opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s' }}>
                         <table className="data-table">
                             <thead>
                                 <tr>
