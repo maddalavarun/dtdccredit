@@ -40,7 +40,7 @@ npm run dev
 - **Frontend**: http://localhost:5173
 - **Backend API**: http://localhost:8000
 - **API Docs**: http://localhost:8000/docs
-- **Default Login**: `admin` / `admin123`
+- **Default Login**: `vf050` / `Varun@2004`
 
 ## Tech Stack
 
