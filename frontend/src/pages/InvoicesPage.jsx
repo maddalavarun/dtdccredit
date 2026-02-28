@@ -1,15 +1,11 @@
-import { useEffect, useState, useRef } from 'react';
-import api from '../api/client';
+import { useState, useRef } from 'react';
+import useSWR, { mutate as globalMutate } from 'swr';
+import api, { fetcher } from '../api/client';
 import toast, { Toaster } from 'react-hot-toast';
 import { HiOutlineUpload, HiOutlineTrash, HiOutlineFilter } from 'react-icons/hi';
 import { FaWhatsapp } from 'react-icons/fa';
 
-const invoicesCache = { data: null, clients: null };
-
 export default function InvoicesPage() {
-    const [invoices, setInvoices] = useState(invoicesCache.data || []);
-    const [clients, setClients] = useState(invoicesCache.clients || []);
-    const [loading, setLoading] = useState(!invoicesCache.data);
     const [showImport, setShowImport] = useState(false);
     const [importResult, setImportResult] = useState(null);
     const [uploading, setUploading] = useState(false);
@@ -17,29 +13,18 @@ export default function InvoicesPage() {
     const [filterStatus, setFilterStatus] = useState('');
     const fileRef = useRef(null);
 
-    const fetchInvoices = () => {
-        if (!invoices.length) setLoading(true);
-        const params = {};
-        if (filterClient) params.client_id = filterClient;
-        if (filterStatus) params.status_filter = filterStatus;
-        api.get('/invoices', { params })
-            .then(r => {
-                setInvoices(r.data);
-                if (!filterClient && !filterStatus) invoicesCache.data = r.data;
-            })
-            .catch(() => toast.error('Failed to load invoices'))
-            .finally(() => setLoading(false));
-    };
+    // Fetch clients globally for the filter dropdown
+    const { data: clients = [] } = useSWR('/clients', fetcher, { keepPreviousData: true });
 
-    useEffect(() => {
-        if (!clients.length) {
-            api.get('/clients').then(r => {
-                setClients(r.data);
-                invoicesCache.clients = r.data;
-            });
-        }
-    }, []);
-    useEffect(() => { fetchInvoices(); }, [filterClient, filterStatus]);
+    // Fetch invoices based on filters
+    let query = '/invoices';
+    if (filterClient || filterStatus) {
+        const params = new URLSearchParams();
+        if (filterClient) params.append('client_id', filterClient);
+        if (filterStatus) params.append('status_filter', filterStatus);
+        query += `?${params.toString()}`;
+    }
+    const { data: invoices, error, isLoading, mutate } = useSWR(query, fetcher, { keepPreviousData: true });
 
     const handleImport = async (e) => {
         e.preventDefault();
@@ -54,9 +39,9 @@ export default function InvoicesPage() {
             });
             setImportResult(data);
             toast.success(`Imported ${data.imported} invoices`);
-            fetchInvoices();
+            mutate();
             if (data.new_clients_created > 0) {
-                api.get('/clients').then(r => setClients(r.data));
+                globalMutate('/clients');
             }
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Import failed');
@@ -70,7 +55,7 @@ export default function InvoicesPage() {
         try {
             await api.delete(`/invoices/${id}`);
             toast.success('Invoice deleted');
-            fetchInvoices();
+            mutate();
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error');
         }
@@ -125,12 +110,14 @@ export default function InvoicesPage() {
             </div>
 
             <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                {loading && invoices.length === 0 ? (
+                {(isLoading && !invoices) ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Loading...</div>
-                ) : invoices.length === 0 ? (
+                ) : error ? (
+                    <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--danger)' }}>Failed to load invoices</div>
+                ) : (!invoices || invoices.length === 0) ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>No invoices found. Import an Excel/CSV file to get started.</div>
                 ) : (
-                    <div style={{ overflowX: 'auto', opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s' }}>
+                    <div style={{ overflowX: 'auto', opacity: isLoading ? 0.7 : 1, transition: 'opacity 0.2s' }}>
                         <table className="data-table">
                             <thead>
                                 <tr>

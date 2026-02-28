@@ -1,24 +1,17 @@
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../api/client';
+import useSWR from 'swr';
+import { fetcher } from '../api/client';
 import { HiOutlineCurrencyRupee, HiOutlineExclamationCircle, HiOutlineCreditCard, HiOutlineUsers } from 'react-icons/hi';
 
-const dbCache = { data: null };
-
 export default function DashboardPage() {
-    const [data, setData] = useState(dbCache.data);
-    const [loading, setLoading] = useState(!dbCache.data);
+    const { data, error, isLoading } = useSWR('/dashboard', fetcher, {
+        keepPreviousData: true
+    });
     const navigate = useNavigate();
 
-    useEffect(() => {
-        api.get('/dashboard').then(r => {
-            setData(r.data);
-            dbCache.data = r.data;
-        }).finally(() => setLoading(false));
-    }, []);
-
-    if (loading && !data) return <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Loading...</div>;
-    if (!data && !loading) return <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--danger)' }}>Failed to load dashboard</div>;
+    // SWR handles caching globally. keepPreviousData ensures no flicker on revalidation.
+    if (isLoading && !data) return <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Loading...</div>;
+    if (error && !data) return <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--danger)' }}>Failed to load dashboard</div>;
     if (!data) return null; // Safe fallback
 
     const fmt = (v) => '₹' + Number(v).toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 });

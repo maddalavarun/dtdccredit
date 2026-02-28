@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import api from '../api/client';
+import useSWR from 'swr';
+import api, { fetcher } from '../api/client';
 import toast, { Toaster } from 'react-hot-toast';
 import {
     HiArrowLeft, HiPlus, HiTrash, HiCheck, HiOutlineCurrencyRupee,
@@ -8,17 +9,18 @@ import {
 } from 'react-icons/hi';
 import { FaWhatsapp } from 'react-icons/fa';
 
-const clientCache = {}; // { [clientId]: { client, invoices, payments } }
-
 export default function ClientDetailPage() {
     const { clientId } = useParams();
     const navigate = useNavigate();
 
-    const cached = clientCache[clientId] || {};
-    const [client, setClient] = useState(cached.client || null);
-    const [invoices, setInvoices] = useState(cached.invoices || []);
-    const [payments, setPayments] = useState(cached.payments || []);
-    const [loading, setLoading] = useState(!cached.client);
+    // SWR fetching
+    const { data: client, error: clientError, mutate: mutateClient } = useSWR(`/clients/${clientId}`, fetcher, { keepPreviousData: false });
+    const { data: invoices, mutate: mutateInvoices } = useSWR(`/invoices?client_id=${clientId}`, fetcher, { keepPreviousData: false });
+    const { data: payments, mutate: mutatePayments } = useSWR(`/payments?client_id=${clientId}`, fetcher, { keepPreviousData: false });
+
+    const loading = !client && !clientError;
+    const resolvedInvoices = invoices || [];
+    const resolvedPayments = payments || [];
 
     // Add invoice modal
     const [showAddInvoice, setShowAddInvoice] = useState(false);
@@ -39,41 +41,6 @@ export default function ClientDetailPage() {
     // Reminder multi-select
     const [reminderMode, setReminderMode] = useState(null); // null | 'whatsapp' | 'email'
     const [selectedInvoices, setSelectedInvoices] = useState([]);
-
-    const fetchAll = () => {
-        if (!client) setLoading(true);
-        Promise.all([
-            api.get(`/clients/${clientId}`),
-            api.get('/invoices', { params: { client_id: clientId } }),
-            api.get('/payments', { params: { client_id: clientId } }),
-        ]).then(([clientRes, invoicesRes, paymentsRes]) => {
-            setClient(clientRes.data);
-            setInvoices(invoicesRes.data);
-            setPayments(paymentsRes.data);
-            clientCache[clientId] = {
-                client: clientRes.data,
-                invoices: invoicesRes.data,
-                payments: paymentsRes.data
-            };
-        }).catch(() => toast.error('Failed to load client data'))
-            .finally(() => setLoading(false));
-    };
-
-    useEffect(() => {
-        // Reset state if switching clients and not in cache
-        if (!clientCache[clientId]) {
-            setClient(null);
-            setInvoices([]);
-            setPayments([]);
-            setLoading(true);
-        } else {
-            setClient(clientCache[clientId].client);
-            setInvoices(clientCache[clientId].invoices);
-            setPayments(clientCache[clientId].payments);
-            setLoading(false);
-        }
-        fetchAll();
-    }, [clientId]);
 
     const fmt = (v) => '₹' + Number(v).toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
@@ -160,7 +127,7 @@ export default function ClientDetailPage() {
     };
 
     // ── Reminder multi-select helpers ──
-    const unpaidInvs = invoices.filter(i => Number(i.outstanding) > 0);
+    const unpaidInvs = (resolvedInvoices || []).filter(i => Number(i.outstanding) > 0);
 
     const startReminder = (mode) => {
         setReminderMode(mode);
@@ -182,7 +149,7 @@ export default function ClientDetailPage() {
     };
 
     const buildInvoiceLines = () => {
-        const selected = invoices.filter(i => selectedInvoices.includes(i.id));
+        const selected = (resolvedInvoices || []).filter(i => selectedInvoices.includes(i.id));
         let totalOutstanding = 0;
         const lines = selected.map((inv, idx) => {
             totalOutstanding += Number(inv.outstanding);
@@ -240,18 +207,18 @@ export default function ClientDetailPage() {
             await api.put(`/clients/${clientId}`, editForm);
             toast.success('Client updated');
             setShowEditClient(false);
-            fetchAll();
+            mutateClient();
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error updating client');
         }
     };
 
     if (loading && !client) return <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Loading...</div>;
-    if (!client && !loading) return <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--danger)' }}>Client not found</div>;
+    if (clientError || (!client && !loading)) return <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--danger)' }}>Client not found</div>;
     if (!client) return null;
 
-    const unpaidInvoices = invoices.filter(i => Number(i.outstanding) > 0);
-    const paidInvoices = invoices.filter(i => Number(i.outstanding) <= 0);
+    const unpaidInvoices = (resolvedInvoices || []).filter(i => Number(i.outstanding) > 0);
+    const paidInvoices = (resolvedInvoices || []).filter(i => Number(i.outstanding) <= 0);
 
     return (
         <div>
@@ -450,7 +417,7 @@ export default function ClientDetailPage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {payments.map(p => (
+                                    {resolvedPayments.map(p => (
                                         <tr key={p.id}>
                                             <td>{p.payment_date}</td>
                                             <td style={{ fontWeight: 500 }}>{p.invoice_number}</td>

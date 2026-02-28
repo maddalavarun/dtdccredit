@@ -1,15 +1,10 @@
-import { useEffect, useState } from 'react';
-import api from '../api/client';
+import { useState } from 'react';
+import useSWR, { mutate as globalMutate } from 'swr';
+import api, { fetcher } from '../api/client';
 import toast, { Toaster } from 'react-hot-toast';
 import { HiPlus, HiTrash } from 'react-icons/hi';
 
-const paymentsCache = { data: null, invoices: null, clients: null };
-
 export default function PaymentsPage() {
-    const [payments, setPayments] = useState(paymentsCache.data || []);
-    const [invoices, setInvoices] = useState(paymentsCache.invoices || []);
-    const [clients, setClients] = useState(paymentsCache.clients || []);
-    const [loading, setLoading] = useState(!paymentsCache.data);
     const [showAdd, setShowAdd] = useState(false);
     const [filterClient, setFilterClient] = useState('');
     const [form, setForm] = useState({
@@ -17,29 +12,16 @@ export default function PaymentsPage() {
         payment_mode: 'UPI', remarks: ''
     });
 
-    const fetchPayments = () => {
-        if (!payments.length) setLoading(true);
-        const params = {};
-        if (filterClient) params.client_id = filterClient;
-        api.get('/payments', { params })
-            .then(r => {
-                setPayments(r.data);
-                if (!filterClient) paymentsCache.data = r.data;
-            })
-            .catch(() => toast.error('Failed to load payments'))
-            .finally(() => setLoading(false));
-    };
+    // Global queries (cached & deduped)
+    const { data: clients = [] } = useSWR('/clients', fetcher, { keepPreviousData: true });
+    const { data: invoices = [] } = useSWR('/invoices', fetcher, { keepPreviousData: true });
 
-    useEffect(() => {
-        if (!clients.length) {
-            api.get('/clients').then(r => { setClients(r.data); paymentsCache.clients = r.data; });
-        }
-        if (!invoices.length) {
-            api.get('/invoices').then(r => { setInvoices(r.data); paymentsCache.invoices = r.data; });
-        }
-        fetchPayments();
-    }, []);
-    useEffect(() => { fetchPayments(); }, [filterClient]);
+    // Filtered query
+    const { data: payments, error, isLoading, mutate } = useSWR(
+        filterClient ? `/payments?client_id=${filterClient}` : '/payments',
+        fetcher,
+        { keepPreviousData: true }
+    );
 
     const unpaidInvoices = invoices.filter(i => Number(i.outstanding) > 0);
 
@@ -50,9 +32,8 @@ export default function PaymentsPage() {
             toast.success('Payment recorded');
             setShowAdd(false);
             setForm({ invoice_id: '', amount: '', payment_date: new Date().toISOString().split('T')[0], payment_mode: 'UPI', remarks: '' });
-            fetchPayments();
-            // Refresh invoices to update outstanding
-            api.get('/invoices').then(r => setInvoices(r.data));
+            mutate();
+            globalMutate('/invoices'); // Refresh invoices universally
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error recording payment');
         }
@@ -63,8 +44,8 @@ export default function PaymentsPage() {
         try {
             await api.delete(`/payments/${id}`);
             toast.success('Payment deleted');
-            fetchPayments();
-            api.get('/invoices').then(r => setInvoices(r.data));
+            mutate();
+            globalMutate('/invoices');
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error deleting payment');
         }
@@ -91,12 +72,14 @@ export default function PaymentsPage() {
             </div>
 
             <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                {loading && payments.length === 0 ? (
+                {(isLoading && !payments) ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Loading...</div>
-                ) : payments.length === 0 ? (
+                ) : error ? (
+                    <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--danger)' }}>Failed to load payments</div>
+                ) : (!payments || payments.length === 0) ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>No payments recorded yet</div>
                 ) : (
-                    <div style={{ overflowX: 'auto', opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s' }}>
+                    <div style={{ overflowX: 'auto', opacity: isLoading ? 0.7 : 1, transition: 'opacity 0.2s' }}>
                         <table className="data-table">
                             <thead>
                                 <tr>

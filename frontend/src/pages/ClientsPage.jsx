@@ -1,32 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../api/client';
+import useSWR from 'swr';
+import api, { fetcher } from '../api/client';
 import toast, { Toaster } from 'react-hot-toast';
 import { HiPlus, HiPencil, HiTrash, HiSearch } from 'react-icons/hi';
 
-const clientsCache = { data: null, timestamp: 0 };
-
 export default function ClientsPage() {
     const navigate = useNavigate();
-    const [clients, setClients] = useState(clientsCache.data || []);
-    const [loading, setLoading] = useState(!clientsCache.data);
     const [search, setSearch] = useState('');
+
+    // SWR automatically handles caching, revalidation, and deduping
+    const { data: clients, error, isLoading, mutate } = useSWR(
+        search ? `/clients?search=${encodeURIComponent(search)}` : '/clients',
+        fetcher,
+        { keepPreviousData: true }
+    );
+
     const [modal, setModal] = useState(null); // null | 'add' | 'edit'
     const [form, setForm] = useState({ company_name: '', contact_person: '', phone: '', email: '' });
     const [editId, setEditId] = useState(null);
-
-    const fetchClients = () => {
-        if (!clients.length) setLoading(true);
-        api.get('/clients', { params: search ? { search } : {} })
-            .then(r => {
-                setClients(r.data);
-                if (!search) { clientsCache.data = r.data; clientsCache.timestamp = Date.now(); }
-            })
-            .catch(() => toast.error('Failed to load clients'))
-            .finally(() => setLoading(false));
-    };
-
-    useEffect(() => { fetchClients(); }, [search]);
 
     const resetForm = () => setForm({ company_name: '', contact_person: '', phone: '', email: '' });
 
@@ -54,7 +46,7 @@ export default function ClientsPage() {
                 toast.success('Client updated');
             }
             setModal(null);
-            fetchClients();
+            mutate(); // Trigger SWR to re-fetch and update cache instantly
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error saving client');
         }
@@ -66,7 +58,7 @@ export default function ClientsPage() {
         try {
             await api.delete(`/clients/${id}`);
             toast.success('Client deleted');
-            fetchClients();
+            mutate();
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error deleting client');
         }
@@ -95,12 +87,14 @@ export default function ClientsPage() {
             </div>
 
             <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                {loading && clients.length === 0 ? (
+                {(isLoading && !clients) ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>Loading...</div>
-                ) : clients.length === 0 ? (
+                ) : error ? (
+                    <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--danger)' }}>Failed to load clients</div>
+                ) : (!clients || clients.length === 0) ? (
                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>No clients found</div>
                 ) : (
-                    <div style={{ overflowX: 'auto', opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s' }}>
+                    <div style={{ overflowX: 'auto', opacity: isLoading ? 0.7 : 1, transition: 'opacity 0.2s' }}>
                         <table className="data-table">
                             <thead>
                                 <tr>
