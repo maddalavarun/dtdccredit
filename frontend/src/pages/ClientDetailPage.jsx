@@ -35,6 +35,12 @@ export default function ClientDetailPage() {
     const [showEditClient, setShowEditClient] = useState(false);
     const [editForm, setEditForm] = useState({ company_name: '', contact_person: '', phone: '', email: '' });
 
+    const [isSaving, setIsSaving] = useState(false);
+
+    const fetchAll = async () => {
+        await Promise.all([mutateClient(), mutateInvoices(), mutatePayments()]);
+    };
+
     // Payment history toggle
     const [showPayments, setShowPayments] = useState(false);
 
@@ -54,6 +60,7 @@ export default function ClientDetailPage() {
     // ── Invoice actions ──
     const handleAddInvoice = async (e) => {
         e.preventDefault();
+        setIsSaving(true);
         try {
             await api.post('/invoices', {
                 client_id: clientId,
@@ -63,11 +70,13 @@ export default function ClientDetailPage() {
                 total_amount: Number(invoiceForm.total_amount),
             });
             toast.success('Invoice added');
-            setShowAddInvoice(false);
             setInvoiceForm({ invoice_number: '', invoice_date: new Date().toISOString().split('T')[0], due_date: '', total_amount: '' });
-            fetchAll();
+            await fetchAll();
+            setShowAddInvoice(false);
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error adding invoice');
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -76,7 +85,7 @@ export default function ClientDetailPage() {
         try {
             await api.delete(`/invoices/${invId}`);
             toast.success('Invoice deleted');
-            fetchAll();
+            await fetchAll();
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error');
         }
@@ -91,6 +100,7 @@ export default function ClientDetailPage() {
 
     const handleAddPayment = async (e) => {
         e.preventDefault();
+        setIsSaving(true);
         try {
             await api.post('/payments', {
                 invoice_id: paymentInvoice.id,
@@ -100,10 +110,12 @@ export default function ClientDetailPage() {
                 remarks: paymentForm.remarks,
             });
             toast.success('Payment recorded');
+            await fetchAll();
             setShowAddPayment(false);
-            fetchAll();
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error recording payment');
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -120,7 +132,7 @@ export default function ClientDetailPage() {
                 remarks: 'Marked as fully paid',
             });
             toast.success('Invoice marked as paid');
-            fetchAll();
+            await fetchAll();
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error');
         }
@@ -203,13 +215,16 @@ export default function ClientDetailPage() {
 
     const handleEditClient = async (e) => {
         e.preventDefault();
+        setIsSaving(true);
         try {
             await api.put(`/clients/${clientId}`, editForm);
             toast.success('Client updated');
+            await mutateClient();
             setShowEditClient(false);
-            mutateClient();
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error updating client');
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -467,7 +482,9 @@ export default function ClientDetailPage() {
                             </div>
                             <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end', marginTop: '1.25rem' }}>
                                 <button type="button" className="btn btn-outline" onClick={() => setShowAddInvoice(false)}>Cancel</button>
-                                <button type="submit" className="btn btn-primary">Add Invoice</button>
+                                <button type="submit" className="btn btn-primary" disabled={isSaving}>
+                                    {isSaving ? 'Processing...' : 'Add Invoice'}
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -518,7 +535,9 @@ export default function ClientDetailPage() {
                             </div>
                             <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end', marginTop: '1.25rem' }}>
                                 <button type="button" className="btn btn-outline" onClick={() => setShowAddPayment(false)}>Cancel</button>
-                                <button type="submit" className="btn btn-success">Record Payment</button>
+                                <button type="submit" className="btn btn-success" disabled={isSaving}>
+                                    {isSaving ? 'Processing...' : 'Record Payment'}
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -557,7 +576,9 @@ export default function ClientDetailPage() {
                             </div>
                             <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end', marginTop: '1.25rem' }}>
                                 <button type="button" className="btn btn-outline" onClick={() => setShowEditClient(false)}>Cancel</button>
-                                <button type="submit" className="btn btn-primary">Save Changes</button>
+                                <button type="submit" className="btn btn-primary" disabled={isSaving}>
+                                    {isSaving ? 'Processing...' : 'Save Changes'}
+                                </button>
                             </div>
                         </form>
                     </div>
