@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useSWR from 'swr';
 import api, { fetcher } from '../api/client';
@@ -13,7 +13,7 @@ export default function ClientsPage() {
 
     // Debounce the search input updates to avoid spamming the backend
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const updateSearch = React.useCallback(
+    const updateSearch = useCallback(
         debounce((val) => setDebouncedSearch(val), 500),
         []
     );

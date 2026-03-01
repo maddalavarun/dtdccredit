@@ -17,6 +17,20 @@ print("Creating tables on Neon...")
 Base.metadata.create_all(bind=neon_engine)
 print("✅ Tables created on Neon!")
 
+        admin_user = db.query(User).filter(User.username == admin_username).first()
+        if not admin_user:
+            admin_user = User(
+                username=admin_username,
+                hashed_password=hash_password(admin_password),
+                full_name="Administrator",
+                role="admin"
+            )
+            db.add(admin_user)
+            db.commit()
+            print(f"Created main admin user: {admin_username}")
+        else:
+            print(f"Admin user {admin_username} already exists.")
+
 # Verify connection
 with neon_engine.connect() as conn:
     from sqlalchemy import text
