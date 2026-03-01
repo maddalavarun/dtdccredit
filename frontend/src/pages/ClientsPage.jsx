@@ -33,6 +33,7 @@ export default function ClientsPage() {
     const [modal, setModal] = useState(null); // null | 'add' | 'edit'
     const [form, setForm] = useState({ company_name: '', contact_person: '', phone: '', email: '' });
     const [editId, setEditId] = useState(null);
+    const [isSaving, setIsSaving] = useState(false);
 
     const resetForm = () => setForm({ company_name: '', contact_person: '', phone: '', email: '' });
 
@@ -51,6 +52,7 @@ export default function ClientsPage() {
 
     const handleSave = async (e) => {
         e.preventDefault();
+        setIsSaving(true);
         try {
             if (modal === 'add') {
                 await api.post('/clients', { ...form, credit_limit: 0 });
@@ -59,10 +61,12 @@ export default function ClientsPage() {
                 await api.put(`/clients/${editId}`, form);
                 toast.success('Client updated');
             }
+            await mutate(); // Trigger SWR to re-fetch and wait for response
             setModal(null);
-            mutate(); // Trigger SWR to re-fetch and update cache instantly
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error saving client');
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -176,7 +180,9 @@ export default function ClientsPage() {
                             </div>
                             <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end', marginTop: '1.25rem' }}>
                                 <button type="button" className="btn btn-outline" onClick={() => setModal(null)}>Cancel</button>
-                                <button type="submit" className="btn btn-primary">{modal === 'add' ? 'Add Client' : 'Save Changes'}</button>
+                                <button type="submit" className="btn btn-primary" disabled={isSaving}>
+                                    {isSaving ? 'Saving...' : (modal === 'add' ? 'Add Client' : 'Save Changes')}
+                                </button>
                             </div>
                         </form>
                     </div>

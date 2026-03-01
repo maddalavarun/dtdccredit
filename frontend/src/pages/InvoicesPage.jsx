@@ -38,10 +38,14 @@ export default function InvoicesPage() {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             setImportResult(data);
-            toast.success(`Imported ${data.imported} invoices`);
-            mutate();
+            if (data.errors?.length > 0) {
+                toast.error(`Import finished with ${data.errors.length} errors`);
+            } else {
+                toast.success(`Imported ${data.imported} invoices`);
+            }
+            await mutate();
             if (data.new_clients_created > 0) {
-                globalMutate('/clients');
+                await globalMutate('/clients');
             }
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Import failed');

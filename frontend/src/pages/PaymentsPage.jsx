@@ -6,6 +6,7 @@ import { HiPlus, HiTrash } from 'react-icons/hi';
 
 export default function PaymentsPage() {
     const [showAdd, setShowAdd] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
     const [filterClient, setFilterClient] = useState('');
     const [form, setForm] = useState({
         invoice_id: '', amount: '', payment_date: new Date().toISOString().split('T')[0],
@@ -27,15 +28,18 @@ export default function PaymentsPage() {
 
     const handleSave = async (e) => {
         e.preventDefault();
+        setIsSaving(true);
         try {
             await api.post('/payments', { ...form, amount: Number(form.amount) });
             toast.success('Payment recorded');
-            setShowAdd(false);
             setForm({ invoice_id: '', amount: '', payment_date: new Date().toISOString().split('T')[0], payment_mode: 'UPI', remarks: '' });
-            mutate();
-            globalMutate('/invoices'); // Refresh invoices universally
+            await mutate();
+            await globalMutate('/invoices'); // Refresh invoices universally
+            setShowAdd(false);
         } catch (err) {
             toast.error(err.response?.data?.detail || 'Error recording payment');
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -182,7 +186,9 @@ export default function PaymentsPage() {
                             </div>
                             <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end', marginTop: '1.25rem' }}>
                                 <button type="button" className="btn btn-outline" onClick={() => setShowAdd(false)}>Cancel</button>
-                                <button type="submit" className="btn btn-success">Record Payment</button>
+                                <button type="submit" className="btn btn-success" disabled={isSaving}>
+                                    {isSaving ? 'Recording...' : 'Record Payment'}
+                                </button>
                             </div>
                         </form>
                     </div>
