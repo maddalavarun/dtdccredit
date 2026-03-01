@@ -142,13 +142,29 @@ async def import_invoices(
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to read file: {str(e)}")
 
-    # Normalize column names
-    df.columns = df.columns.str.strip()
+    # Normalize column names for robust parsing
+    df.columns = df.columns.str.strip().str.lower()
 
-    required_cols = {"Client Name", "Invoice Number", "Invoice Date", "Due Date", "Invoice Amount"}
-    missing = required_cols - set(df.columns)
+    # Create mapping of expected normalized column names
+    col_map = {
+        "client name": ["client name", "client", "company name", "clientname"],
+        "invoice number": ["invoice number", "invoice no", "invoiceno", "invoice #", "invoice"],
+        "invoice date": ["invoice date", "date", "invoicedate"],
+        "due date": ["due date", "duedate"],
+        "invoice amount": ["invoice amount", "amount", "total", "total amount", "invoiceamount"]
+    }
+
+    # Find matching columns
+    matched_cols = {}
+    for canonical, variations in col_map.items():
+        for col in df.columns:
+            if col in variations:
+                matched_cols[canonical] = col
+                break
+    
+    missing = set(col_map.keys()) - set(matched_cols.keys())
     if missing:
-        raise HTTPException(status_code=400, detail=f"Missing required columns: {', '.join(missing)}")
+        raise HTTPException(status_code=400, detail=f"Missing required columns. Looked for: {', '.join(missing)}")
 
     result.total_rows = len(df)
 
@@ -157,33 +173,42 @@ async def import_invoices(
         errors_in_row = []
 
         # Validate fields
-        client_name = str(row.get("Client Name", "")).strip()
-        invoice_number = str(row.get("Invoice Number", "")).strip()
-        if not client_name:
+        client_col = matched_cols["client name"]
+        inv_num_col = matched_cols["invoice number"]
+        inv_date_col = matched_cols["invoice date"]
+        due_date_col = matched_cols["due date"]
+        amount_col = matched_cols["invoice amount"]
+
+        client_name = str(row.get(client_col, "")).strip()
+        invoice_number = str(row.get(inv_num_col, "")).strip()
+        if not client_name or client_name == "nan":
             errors_in_row.append(f"Row {row_num}: Missing Client Name")
-        if not invoice_number:
+            client_name = ""
+        if not invoice_number or invoice_number == "nan":
             errors_in_row.append(f"Row {row_num}: Missing Invoice Number")
+            invoice_number = ""
 
         # Parse dates
         try:
-            invoice_date = pd.to_datetime(row["Invoice Date"]).date()
+            invoice_date = pd.to_datetime(row[inv_date_col]).date()
         except Exception:
             errors_in_row.append(f"Row {row_num}: Invalid Invoice Date")
             invoice_date = None
 
         try:
-            due_date = pd.to_datetime(row["Due Date"]).date()
+            due_date = pd.to_datetime(row[due_date_col]).date()
         except Exception:
             errors_in_row.append(f"Row {row_num}: Invalid Due Date")
             due_date = None
 
         # Parse amount
         try:
-            amount = Decimal(str(row["Invoice Amount"]))
+            amount_val = str(row[amount_col]).replace(",", "").strip() # Remove commas if present
+            amount = Decimal(amount_val)
             if amount <= 0:
                 errors_in_row.append(f"Row {row_num}: Invoice Amount must be positive")
                 amount = None
-        except (InvalidOperation, ValueError):
+        except (InvalidOperation, ValueError, TypeError):
             errors_in_row.append(f"Row {row_num}: Invalid Invoice Amount")
             amount = None
 

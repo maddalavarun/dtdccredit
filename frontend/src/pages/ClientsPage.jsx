@@ -4,14 +4,28 @@ import useSWR from 'swr';
 import api, { fetcher } from '../api/client';
 import toast, { Toaster } from 'react-hot-toast';
 import { HiPlus, HiPencil, HiTrash, HiSearch } from 'react-icons/hi';
+import debounce from 'lodash.debounce';
 
 export default function ClientsPage() {
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
+    const [debouncedSearch, setDebouncedSearch] = useState('');
+
+    // Debounce the search input updates to avoid spamming the backend
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const updateSearch = React.useCallback(
+        debounce((val) => setDebouncedSearch(val), 500),
+        []
+    );
+
+    const handleSearchChange = (e) => {
+        setSearch(e.target.value);
+        updateSearch(e.target.value);
+    };
 
     // SWR automatically handles caching, revalidation, and deduping
     const { data: clients, error, isLoading, mutate } = useSWR(
-        search ? `/clients?search=${encodeURIComponent(search)}` : '/clients',
+        debouncedSearch ? `/clients?search=${encodeURIComponent(debouncedSearch)}` : '/clients',
         fetcher,
         { keepPreviousData: true }
     );
@@ -78,7 +92,7 @@ export default function ClientsPage() {
                             className="form-input"
                             placeholder="Search clients..."
                             value={search}
-                            onChange={e => setSearch(e.target.value)}
+                            onChange={handleSearchChange}
                             style={{ paddingLeft: 32, width: 220 }}
                         />
                     </div>

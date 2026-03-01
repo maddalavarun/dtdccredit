@@ -13,7 +13,7 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-// Handle 401 responses
+// Handle errors globally
 api.interceptors.response.use(
     (res) => res,
     (err) => {
@@ -21,6 +21,11 @@ api.interceptors.response.use(
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             window.location.href = '/login';
+        } else if (!err.response) {
+            // Network error (e.g., Neon DB waking up / backend unreachable)
+            console.error('Network Error usually due to cold start or disconnected backend:', err);
+            // Notice: don't import toast globally here to avoid circular dep, 
+            // usually handled in components, but we can log or trigger a custom event
         }
         return Promise.reject(err);
     }

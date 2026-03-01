@@ -42,20 +42,19 @@ def get_dashboard(db: Session = Depends(get_db), _user: User = Depends(get_curre
 
     for row in invoice_data:
         cid = str(row.client_id)
-        outstanding = Decimal(str(row.total_amount)) - Decimal(str(row.paid_amount))
-
-        if outstanding > 0:
-            total_outstanding += outstanding
-            if row.due_date < today:
-                total_overdue += outstanding
-
         if cid not in client_agg:
             client_agg[cid] = {"outstanding": Decimal("0"), "overdue": Decimal("0"), "overdue_count": 0, "invoice_count": 0}
+        
         agg = client_agg[cid]
         agg["invoice_count"] += 1
+
+        outstanding = Decimal(str(row.total_amount)) - Decimal(str(row.paid_amount))
+        
         if outstanding > 0:
+            total_outstanding += outstanding
             agg["outstanding"] += outstanding
             if row.due_date < today:
+                total_overdue += outstanding
                 agg["overdue"] += outstanding
                 agg["overdue_count"] += 1
 

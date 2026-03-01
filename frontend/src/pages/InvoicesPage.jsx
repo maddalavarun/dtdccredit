@@ -63,7 +63,18 @@ export default function InvoicesPage() {
 
     const sendWhatsApp = (inv) => {
         const client = clients.find(c => c.id === inv.client_id);
-        const phone = client?.phone?.replace(/\D/g, '') || '';
+
+        // Clean the phone number (keep only digits and '+')
+        let phone = (client?.phone || '').replace(/[^\d+]/g, '');
+
+        // If it starts with '+', remove the '+' for the wa.me link
+        if (phone.startsWith('+')) {
+            phone = phone.substring(1);
+        } else if (phone && !phone.startsWith('91') && phone.length <= 10) {
+            // Assume it's an Indian number missing the country code
+            phone = '91' + phone;
+        }
+
         const msg = encodeURIComponent(
             `Hi ${client?.company_name || 'Client'},\n\nThis is a gentle reminder regarding your pending invoice:\n\n` +
             `Invoice #: ${inv.invoice_number}\n` +
@@ -72,7 +83,7 @@ export default function InvoicesPage() {
             `Due Date: ${inv.due_date}\n\n` +
             `Please arrange the payment at the earliest.\n\nThank you,\nDTDC Franchise`
         );
-        window.open(`https://wa.me/${phone ? '91' + phone : ''}?text=${msg}`, '_blank');
+        window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
     };
 
     const statusBadge = (inv) => {
